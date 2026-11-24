@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HanBridgeGlobal | 한브릿지 글로벌</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', '"Noto Sans KR"', '"Noto Sans JP"', '"Noto Sans SC"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            DEFAULT: '#0A2540',
+                            deep: '#06182C',
+                            royal: '#15549A',
+                            light: '#F4F7FA',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+            color: #1A202C;
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        .img-placeholder-box {
+            background: linear-gradient(135deg, #F8FAFC 0%, #EEF2F6 100%);
+            border: 1.5px dashed #CBD5E1;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-placeholder-box:hover {
+            border-color: #15549A;
+            background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quick-btn {
+            box-shadow: 0 8px 24px rgba(10, 37, 64, 0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .quick-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(10, 37, 64, 0.18);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-navy selection:text-white pb-20 md:pb-0">
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <a href="#" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="w-11 h-11 rounded-xl overflow-hidden flex items-center justify-center bg-white border border-slate-100 shadow-xs p-0.5">
+                        <img src="이미지.jpg" alt="HanBridgeGlobal Logo" class="w-full h-full object-contain"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <svg style="display:none;" viewBox="0 0 100 100" class="w-9 h-9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="48" r="32" stroke="#15549A" stroke-width="3.5" stroke-dasharray="145 55" transform="rotate(-25 50 48)"/>
+                            <path d="M22 40C35 45 65 45 78 40" stroke="#15549A" stroke-width="2.5"/>
+                            <path d="M50 16V50" stroke="#15549A" stroke-width="2.5"/>
+                            <path d="M12 62H88" stroke="#0A2540" stroke-width="5" stroke-linecap="round"/>
+                            <path d="M30 44V62M70 44V62" stroke="#0A2540" stroke-width="4.5" stroke-linecap="round"/>
+                            <path d="M30 46C38 56 62 56 70 46" stroke="#0A2540" stroke-width="2.5"/>
+                            <path d="M45 60C62 54 74 40 82 26" stroke="#0A2540" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M84 20L78 25L81 27L80 31L85 27L89 29L86 24L89 20L84 20Z" fill="#0A2540"/>
+                            <path d="M26 72C38 82 62 82 74 72C62 76 38 76 26 72Z" fill="#15549A"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-lg sm:text-xl font-bold tracking-tight text-navy leading-none">
+                            HAN BRIDGE <span class="text-navy-royal">GLOBAL</span>
+                        </span>
+                        <span class="text-[11px] font-medium text-slate-400 tracking-widest mt-1">한브릿지 글로벌</span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-10 text-sm font-medium text-slate-600">
+                    <a href="#about" class="hover:text-navy transition-colors py-2" data-i18n="nav_about">회사소개</a>
+                    <a href="#programs" class="hover:text-navy transition-colors py-2" data-i18n="nav_programs">주요 사업 분야</a>
+                    <a href="#channels" class="hover:text-navy transition-colors py-2" data-i18n="nav_channels">글로벌 상담</a>
+                    <a href="#contact" class="hover:text-navy transition-colors py-2" data-i18n="nav_contact">이메일 문의</a>
+                    <a href="#location" class="hover:text-navy transition-colors py-2" data-i18n="nav_location">오시는 길</a>
+                </nav>
+
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200/70">
+                        <button type="button" onclick="setLanguage('ko')" data-lang-btn="ko" class="lang-btn px-2.5 py-1 rounded-full text-xs font-semibold transition-all bg-navy text-white shadow-xs">KR</button>
+                        <button type="button" onclick="setLanguage('en')" data-lang-btn="en" class="lang-btn px-2.5 py-1 rounded-full text-xs font-medium text-slate-600 hover:text-navy transition-all">EN</button>
+                        <button type="button" onclick="setLanguage('ja')" data-lang-btn="ja" class="lang-btn px-2.5 py-1 rounded-full text-xs font-medium text-slate-600 hover:text-navy transition-all">JP</button>
+                        <button type="button" onclick="setLanguage('zh')" data-lang-btn="zh" class="lang-btn px-2.5 py-1 rounded-full text-xs font-medium text-slate-600 hover:text-navy transition-all">CN</button>
+                    </div>
+
+                    <button type="button" id="mobile-menu-btn" aria-label="메뉴 열기" class="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 pt-3 pb-6 space-y-3 shadow-lg">
+            <a href="#about" onclick="closeMobileMenu()" class="block py-2.5 text-base font-medium text-slate-700 hover:text-navy border-b border-slate-50" data-i18n="nav_about">회사소개</a>
+            <a href="#programs" onclick="closeMobileMenu()" class="block py-2.5 text-base font-medium text-slate-700 hover:text-navy border-b border-slate-50" data-i18n="nav_programs">주요 사업 분야</a>
+            <a href="#channels" onclick="closeMobileMenu()" class="block py-2.5 text-base font-medium text-slate-700 hover:text-navy border-b border-slate-50" data-i18n="nav_channels">글로벌 상담</a>
+            <a href="#contact" onclick="closeMobileMenu()" class="block py-2.5 text-base font-medium text-slate-700 hover:text-navy border-b border-slate-50" data-i18n="nav_contact">이메일 문의</a>
+            <a href="#location" onclick="closeMobileMenu()" class="block py-2.5 text-base font-medium text-navy font-semibold" data-i18n="nav_location">오시는 길</a>
+        </div>
+    </header>
+
+    <section class="pt-24 sm:pt-28 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="relative rounded-3xl overflow-hidden shadow-sm border border-slate-200/80">
+            <div class="img-placeholder-box w-full h-[420px] sm:h-[520px] lg:h-[600px] flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-14 h-14 rounded-2xl bg-white/90 shadow-xs border border-slate-200 flex items-center justify-center mb-4 text-navy-royal">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <span class="text-lg sm:text-2xl font-semibold text-slate-600 tracking-tight">이미지 들어가는 부분</span>
+                <span class="text-xs sm:text-sm text-slate-400 mt-1.5">Main Hero Visual Banner Area</span>
+            </div>
+
+            <div class="bg-white/95 backdrop-blur-md border-t border-slate-100 px-6 sm:px-10 py-7 sm:py-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div class="max-w-2xl">
+                    <p class="text-xs font-bold tracking-[0.18em] text-navy-royal uppercase mb-2">
+                        Connecting Korea to the World, Creating Global Value.
+                    </p>
+                    <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold text-navy tracking-tight leading-snug" data-i18n="hero_slogan">
+                        대한민국과 세계를 연결하는 글로벌 비즈니스 파트너
+                    </h1>
+                    <p class="text-sm text-slate-500 mt-1.5 font-medium">
+                        Han Bridge Global <span class="mx-1.5 text-slate-300">|</span> 한브릿지 글로벌
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                    <a href="https://line.me/ti/p/d8eyGtT5a_" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-[#06C755] text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-xs" data-i18n="hero_line">
+                        LINE 바로 상담
+                    </a>
+                    <a href="https://www.instagram.com/hanbridgeglobal?knvt=YWN5MGVnaXMwODd2&utm_source=qr" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-xs">
+                        Instagram
+                    </a>
+                    <button type="button" onclick="openWechatModal()" class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-[#07C160] text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-xs cursor-pointer" data-i18n="hero_wechat">
+                        WeChat QR
+                    </button>
+                    <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-navy text-white text-sm font-medium hover:bg-navy-royal transition-colors shadow-xs" data-i18n="hero_cta">
+                        이메일 문의
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 sm:py-28 bg-navy-light/60 border-y border-slate-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+                    <div class="img-placeholder-box w-full h-[320px] sm:h-[380px] rounded-3xl flex flex-col items-center justify-center p-6 text-center shadow-2xs">
+                        <svg class="w-10 h-10 text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-base sm:text-lg font-semibold text-slate-600">이미지 들어가는 부분</span>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200/70 shadow-2xs">
+                        <p class="text-[11px] font-bold tracking-[0.18em] text-navy-royal uppercase mb-4">CORE VALUES</p>
+                        <div class="grid grid-cols-3 gap-3 text-center">
+                            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                                <span class="block text-xs font-bold text-navy-royal mb-1">01</span>
+                                <span class="text-xs sm:text-sm font-semibold text-navy" data-i18n="val_1">고객 중심의 서비스</span>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                                <span class="block text-xs font-bold text-navy-royal mb-1">02</span>
+                                <span class="text-xs sm:text-sm font-semibold text-navy" data-i18n="val_2">신뢰 기반 파트너십</span>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                                <span class="block text-xs font-bold text-navy-royal mb-1">03</span>
+                                <span class="text-xs sm:text-sm font-semibold text-navy" data-i18n="val_3">지속적인 혁신</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 text-xs font-semibold tracking-wider text-navy-royal uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-navy-royal"></span>
+                        <span data-i18n="about_badge">COMPANY INTRODUCTION · 회사소개</span>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-2xl sm:text-4xl font-bold text-navy tracking-tight leading-snug" data-i18n="about_heading">
+                            대한민국과 세계를 연결하는<br class="hidden sm:inline"> 글로벌 비즈니스 파트너
+                        </h2>
+                        <p class="text-sm sm:text-base font-medium text-navy-royal mt-2">
+                            Connecting Korea to the World, Creating Global Value.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-7 sm:p-10 border border-slate-200/70 shadow-2xs space-y-5 text-slate-600 text-[15px] sm:text-base leading-[1.85]">
+                        <p class="text-slate-800 font-medium" data-i18n="about_p1">
+                            한브릿지 글로벌(Han Bridge Global)은 대한민국과 세계를 연결하며 새로운 기회와 가치를 창출하는 글로벌 비즈니스 전문 기업입니다.
+                        </p>
+                        <p data-i18n="about_p2">
+                            외국인 환자 유치, 종합여행 서비스 및 글로벌 무역을 핵심 사업으로 운영하며, 고객의 다양한 요구에 부합하는 전문적이고 차별화된 서비스를 제공하고자 합니다.
+                        </p>
+                        <p data-i18n="about_p3">
+                            대한민국의 우수한 의료 기술과 의료 서비스를 세계에 알리고, 해외 고객들이 편리하고 안전하게 의료 서비스를 이용할 수 있도록 의료기관 연계, 상담, 통역 및 체류 지원 등 맞춤형 서비스를 제공합니다.
+                        </p>
+                        <p data-i18n="about_p4">
+                            또한 의료관광을 비롯한 맞춤형 여행 서비스와 국내외 우수한 상품의 수출입 및 유통을 통해 글로벌 비즈니스의 새로운 가능성을 만들어 나가고 있습니다.
+                        </p>
+                        <p data-i18n="about_p5">
+                            한브릿지 글로벌은 고객 중심의 서비스, 신뢰를 바탕으로 한 파트너십, 지속적인 혁신을 핵심 가치로 삼고 있습니다.
+                        </p>
+                        <p data-i18n="about_p6">
+                            국가와 언어, 문화의 경계를 넘어 사람과 사람, 기업과 기업, 대한민국과 세계를 잇는 든든한 가교가 되겠습니다.
+                        </p>
+
+                        <div class="pt-4 mt-4 border-t border-slate-100">
+                            <p class="text-base sm:text-lg font-bold text-navy flex items-center gap-2.5" data-i18n="about_closing">
+                                <span class="w-1.5 h-6 rounded-full bg-navy-royal inline-block shrink-0"></span>
+                                당신의 새로운 가능성, 한브릿지 글로벌이 함께합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal scroll-mt-20">
+        <div class="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+            <p class="text-xs font-bold tracking-[0.2em] text-navy-royal uppercase mb-2.5">OUR BUSINESS</p>
+            <h2 class="text-2xl sm:text-4xl font-bold text-navy tracking-tight" data-i18n="program_title">주요 사업 분야 (Our Business)</h2>
+            <p class="text-sm sm:text-base text-slate-500 mt-3" data-i18n="program_sub">외국인 환자 유치, 종합여행, 글로벌 무역을 통해 대한민국과 세계를 잇는 전문 비즈니스 솔루션을 제공합니다.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs hover:shadow-lg hover:border-navy-royal/40 transition-all duration-300 flex flex-col">
+                <div class="img-placeholder-box w-full h-60 sm:h-64 rounded-2xl flex flex-col items-center justify-center p-4 text-center mb-6">
+                    <span class="text-base font-semibold text-slate-600">이미지 들어가는 부분</span>
+                </div>
+                <div class="px-2 pb-3 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-navy-royal tracking-widest">BUSINESS 01</span>
+                        <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-navy-light text-navy">Medical Tourism</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy" data-i18n="card1_title">외국인 환자 유치</h3>
+                    <p class="text-xs font-medium text-slate-400 mt-0.5">Medical Tourism</p>
+                    <p class="text-sm text-slate-600 mt-3.5 leading-relaxed flex-1" data-i18n="card1_desc">
+                        국내 의료기관 연계, 진료 예약, 의료 통역, 입국 및 체류 지원 등 외국인 환자를 위한 맞춤형 의료관광 서비스.
+                    </p>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs hover:shadow-lg hover:border-navy-royal/40 transition-all duration-300 flex flex-col">
+                <div class="img-placeholder-box w-full h-60 sm:h-64 rounded-2xl flex flex-col items-center justify-center p-4 text-center mb-6">
+                    <span class="text-base font-semibold text-slate-600">이미지 들어가는 부분</span>
+                </div>
+                <div class="px-2 pb-3 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-navy-royal tracking-widest">BUSINESS 02</span>
+                        <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-navy-light text-navy">Global Travel</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy" data-i18n="card2_title">종합여행</h3>
+                    <p class="text-xs font-medium text-slate-400 mt-0.5">Global Travel</p>
+                    <p class="text-sm text-slate-600 mt-3.5 leading-relaxed flex-1" data-i18n="card2_desc">
+                        국내외 여행, 맞춤형 관광, 의료관광, 비즈니스 방문 등 고객의 목적에 맞는 차별화된 여행 서비스.
+                    </p>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs hover:shadow-lg hover:border-navy-royal/40 transition-all duration-300 flex flex-col">
+                <div class="img-placeholder-box w-full h-60 sm:h-64 rounded-2xl flex flex-col items-center justify-center p-4 text-center mb-6">
+                    <span class="text-base font-semibold text-slate-600">이미지 들어가는 부분</span>
+                </div>
+                <div class="px-2 pb-3 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-navy-royal tracking-widest">BUSINESS 03</span>
+                        <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-navy-light text-navy">Global Trade</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy" data-i18n="card3_title">글로벌 무역</h3>
+                    <p class="text-xs font-medium text-slate-400 mt-0.5">Global Trade</p>
+                    <p class="text-sm text-slate-600 mt-3.5 leading-relaxed flex-1" data-i18n="card3_desc">
+                        국내외 우수 상품의 발굴, 수출입, 유통 및 해외시장 개척을 통한 글로벌 비즈니스 파트너십 구축.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="channels" class="py-20 sm:py-28 bg-slate-50 border-t border-slate-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <p class="text-xs font-bold tracking-[0.2em] text-navy-royal uppercase mb-2">GLOBAL DIRECT CONTACT</p>
+                <h2 class="text-2xl sm:text-4xl font-bold text-navy tracking-tight" data-i18n="contact_title">실시간 글로벌 상담 채널</h2>
+                <p class="text-sm sm:text-base text-slate-500 mt-3" data-i18n="contact_sub">편하신 메신저 아이콘을 클릭하시면 한브릿지 글로벌 공식 계정으로 바로 연결됩니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
+                <a href="https://line.me/ti/p/d8eyGtT5a_" target="_blank" rel="noopener noreferrer"
+                   class="group bg-white rounded-3xl p-7 border border-slate-200/70 shadow-2xs hover:border-[#06C755] hover:shadow-md transition-all flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-[#06C755] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
+                        <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy">LINE</h3>
+                    <p class="text-xs text-slate-500 mt-1" data-i18n="line_desc">라인 공식 상담 연결</p>
+                    <span class="mt-4 inline-flex items-center text-xs font-semibold text-[#06C755]">
+                        <span data-i18n="connect_now">바로가기</span>
+                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </a>
+
+                <a href="https://www.instagram.com/hanbridgeglobal?knvt=YWN5MGVnaXMwODd2&utm_source=qr" target="_blank" rel="noopener noreferrer"
+                   class="group bg-white rounded-3xl p-7 border border-slate-200/70 shadow-2xs hover:border-pink-500 hover:shadow-md transition-all flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy">Instagram</h3>
+                    <p class="text-xs text-slate-500 mt-1" data-i18n="insta_desc">@hanbridgeglobal 공식 인스타그램</p>
+                    <span class="mt-4 inline-flex items-center text-xs font-semibold text-pink-600">
+                        <span data-i18n="connect_now">바로가기</span>
+                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </a>
+
+                <button type="button" onclick="openWechatModal()"
+                        class="group bg-white rounded-3xl p-7 border border-slate-200/70 shadow-2xs hover:border-[#07C160] hover:shadow-md transition-all flex flex-col items-center text-center cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-[#07C160] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
+                        <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy">WeChat</h3>
+                    <p class="text-xs text-slate-500 mt-1" data-i18n="wechat_desc">위챗 QR 코드 스캔 추가</p>
+                    <span class="mt-4 inline-flex items-center text-xs font-semibold text-[#07C160]">
+                        <span data-i18n="view_qr">QR 코드 보기</span>
+                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </button>
+            </div>
+
+            <div id="contact" class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200/80 overflow-hidden scroll-mt-24">
+                <div class="bg-navy px-6 sm:px-10 py-8 text-white flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-semibold tracking-widest text-blue-300 uppercase">EMAIL INQUIRY</span>
+                        <h3 class="text-2xl font-bold mt-1" data-i18n="form_heading">이메일 상담 문의</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 bg-white/10 p-1.5 rounded-2xl">
+                        <button type="button" onclick="setLanguage('ko')" data-form-lang="ko" class="form-lang-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white text-navy transition-all">한국어</button>
+                        <button type="button" onclick="setLanguage('en')" data-form-lang="en" class="form-lang-btn px-3 py-1.5 rounded-xl text-xs font-medium text-white/80 hover:text-white transition-all">English</button>
+                        <button type="button" onclick="setLanguage('ja')" data-form-lang="ja" class="form-lang-btn px-3 py-1.5 rounded-xl text-xs font-medium text-white/80 hover:text-white transition-all">日本語</button>
+                        <button type="button" onclick="setLanguage('zh')" data-form-lang="zh" class="form-lang-btn px-3 py-1.5 rounded-xl text-xs font-medium text-white/80 hover:text-white transition-all">中文</button>
+                    </div>
+                </div>
+
+                <form id="inquiryForm" novalidate onsubmit="handleInquirySubmit(event)" class="p-6 sm:p-10 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="senderName" class="block text-sm font-semibold text-slate-700 mb-2" data-i18n="label_name">성함 *</label>
+                            <input type="text" id="senderName" oninput="clearFieldError('senderName', 'err_senderName')"
+                                   class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-navy focus:ring-2 focus:ring-navy/10 outline-none transition-all text-sm"
+                                   placeholder="성함을 입력해 주세요" data-i18n-placeholder="ph_name">
+                            <p id="err_senderName" class="hidden mt-1.5 text-xs font-semibold text-red-600" data-i18n="err_required">필수 입력 항목입니다. 반드시 입력해 주세요.</p>
+                        </div>
+
+                        <div>
+                            <label for="senderEmail" class="block text-sm font-semibold text-slate-700 mb-2" data-i18n="label_email">이메일 주소 *</label>
+                            <input type="email" id="senderEmail" oninput="clearFieldError('senderEmail', 'err_senderEmail')"
+                                   class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-navy focus:ring-2 focus:ring-navy/10 outline-none transition-all text-sm"
+                                   placeholder="example@email.com" data-i18n-placeholder="ph_email">
+                            <p id="err_senderEmail" class="hidden mt-1.5 text-xs font-semibold text-red-600" data-i18n="err_required">필수 입력 항목입니다. 반드시 입력해 주세요.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="senderContact" class="block text-sm font-semibold text-slate-700 mb-2" data-i18n="label_contact">연락처 또는 메신저 ID</label>
+                            <input type="text" id="senderContact"
+                                   class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-navy focus:ring-2 focus:ring-navy/10 outline-none transition-all text-sm"
+                                   placeholder="LINE / WeChat ID 또는 전화번호" data-i18n-placeholder="ph_contact">
+                        </div>
+
+                        <div>
+                            <label for="preferredLang" class="block text-sm font-semibold text-slate-700 mb-2" data-i18n="label_pref_lang">답변 희망 언어</label>
+                            <select id="preferredLang"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-navy focus:ring-2 focus:ring-navy/10 outline-none transition-all text-sm bg-white">
+                                <option value="한국어 (Korean)">한국어 (Korean)</option>
+                                <option value="English">English</option>
+                                <option value="日本語 (Japanese)">日本語 (Japanese)</option>
+                                <option value="中文 (Chinese)">中文 (Chinese)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="inquiryCategory" class="block text-sm font-semibold text-slate-700 mb-2" data-i18n="label_category">희망 상담 분야</label>
+                        <select id="inquiryCategory"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-navy focus:ring-2 focus:ring-navy/10 outline-none transition-all text-sm bg-white">
+                            <option value="medical" data-i18n="opt_cat1">외국인 환자 유치 (Medical Tourism)</option>
+                            <option value="travel" data-i18n="opt_cat2">종합여행 서비스 (Global Travel)</option>
+                            <option value="trade" data-i18n="opt_cat3">글로벌 무역 및 수출입 (Global Trade)</option>
+                            <option value="other" data-i18n="opt_cat4">기타 비즈니스 제휴 및 일반 문의</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="inquiryMessage" class="block text-sm font-semibold text-slate-700 mb-2" data-i18n="label_message">문의 내용 *</label>
+                        <textarea id="inquiryMessage" rows="5" oninput="clearFieldError('inquiryMessage', 'err_inquiryMessage')"
+                                  class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-navy focus:ring-2 focus:ring-navy/10 outline-none transition-all text-sm resize-none"
+                                  placeholder="문의하실 내용을 자유롭게 작성해 주세요." data-i18n-placeholder="ph_message"></textarea>
+                        <p id="err_inquiryMessage" class="hidden mt-1.5 text-xs font-semibold text-red-600" data-i18n="err_required">필수 입력 항목입니다. 반드시 입력해 주세요.</p>
+                    </div>
+
+                    <div class="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <p class="text-xs text-slate-400" data-i18n="form_note">
+                            * 한국어, 영어, 일본어, 중국어 모두 문의 및 답변이 가능합니다.
+                        </p>
+                        <button type="submit"
+                                class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-navy hover:bg-navy-royal text-white font-semibold text-sm transition-all shadow-md hover:shadow-lg shrink-0 cursor-pointer" data-i18n="btn_submit">
+                            이메일 문의 보내기
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer id="location" class="bg-[#33363B] text-white pt-6 sm:pt-8 pb-8 scroll-mt-20">
+        <div class="w-full px-2 sm:px-4">
+            <div class="relative w-full h-[320px] sm:h-[420px] overflow-hidden bg-slate-200 border border-[#464A52]">
+                <iframe
+                    title="HanBridgeGlobal Location Map"
+                    src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EC%84%9C%EA%B5%AC%20%EB%A7%88%EA%B3%A1%EC%84%9C%EB%A1%9C%20152%20%EB%91%90%EC%82%B0%EB%8D%94%EB%9E%9C%EB%93%9C%ED%83%80%EC%9B%8C&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                    class="w-full h-full border-0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+                <div class="absolute top-3 left-3 z-10 bg-white rounded-xs shadow-md p-3 max-w-[245px] text-slate-800 border border-slate-200">
+                    <p class="text-xs font-bold text-navy leading-snug">한브릿지 글로벌 (Han Bridge Global)</p>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-tight">서울특별시 강서구 마곡서로 152, 두산더랜드타워A동 712호</p>
+                    <div class="mt-2">
+                        <a href="https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%84%9C%EB%A1%9C+152+%EB%91%90%EC%82%B0%EB%8D%94%EB%9E%9C%EB%93%9C%ED%83%80%EC%9B%8CA%EB%8F%99+712%ED%98%B8"
+                           target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1 px-2.5 py-1 bg-[#1A73E8] hover:bg-[#1557B0] text-white text-[11px] font-medium rounded-xs transition-colors">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                            <span data-i18n="map_open">지도에서 열기</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-7 pb-8 space-y-3">
+            <div class="flex items-center gap-4 max-w-md">
+                <h3 class="text-base sm:text-lg font-medium text-neutral-100 shrink-0" data-i18n="banner_contact_title">연락처 및 문의</h3>
+                <div class="h-px bg-[#464A52] flex-1"></div>
+            </div>
+
+            <div class="space-y-1">
+                <a href="tel:031-812-7636" class="block text-3xl sm:text-4xl font-bold tracking-tight text-white hover:text-blue-300 transition-colors">
+                    031) 812-7636
+                </a>
+                <p class="text-sm sm:text-base font-medium text-neutral-200">
+                    E-mail : <a href="mailto:hanbridgeglobal@nate.com" class="hover:underline text-white">hanbridgeglobal@nate.com</a>
+                </p>
+            </div>
+
+            <div class="pt-0.5 space-y-0.5 text-xs sm:text-sm text-neutral-200 leading-relaxed">
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%84%9C%EB%A1%9C+152+%EB%91%90%EC%82%B0%EB%8D%94%EB%9E%9C%EB%93%9C%ED%83%80%EC%9B%8CA%EB%8F%99+712%ED%98%B8"
+                       target="_blank" rel="noopener noreferrer"
+                       class="hover:text-blue-300 underline decoration-neutral-500 underline-offset-4 transition-colors">
+                        주소 : 서울특별시 강서구 마곡서로 152, 두산더랜드타워A동 712호
+                    </a>
+                </p>
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%84%9C%EB%A1%9C+152+%EB%91%90%EC%82%B0%EB%8D%94%EB%9E%9C%EB%93%9C%ED%83%80%EC%9B%8CA%EB%8F%99+712%ED%98%B8"
+                       target="_blank" rel="noopener noreferrer"
+                       class="hover:text-blue-300 underline decoration-neutral-500 underline-offset-4 transition-colors">
+                        Address : 152, Magokseo-ro, Gangseo-gu, Seoul, Republic of Korea
+                    </a>
+                </p>
+                <p class="text-neutral-300">Zipcode 07788</p>
+            </div>
+        </div>
+
+        <div class="border-t border-[#464A52] pt-5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                <div class="flex items-center gap-3 shrink-0">
+                    <div class="w-9 h-9 rounded-lg bg-white p-1 flex items-center justify-center overflow-hidden">
+                        <img src="이미지.jpg" alt="HanBridgeGlobal" class="w-full h-full object-contain"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none;" class="text-navy font-extrabold text-xs">HBG</span>
+                    </div>
+                    <div class="leading-tight">
+                        <p class="text-sm font-bold text-white tracking-wider">HAN BRIDGE GLOBAL</p>
+                        <p class="text-[10px] text-neutral-300">한브릿지 글로벌</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] sm:text-xs text-neutral-300">
+                    <a href="https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%84%9C%EB%A1%9C+152+%EB%91%90%EC%82%B0%EB%8D%94%EB%9E%9C%EB%93%9C%ED%83%80%EC%9B%8CA%EB%8F%99+712%ED%98%B8"
+                       target="_blank" rel="noopener noreferrer"
+                       class="hover:text-white underline decoration-neutral-500 underline-offset-4 transition-colors">
+                        서울특별시 강서구 마곡서로 152, 두산더랜드타워A동 712호 (07788)
+                    </a>
+                    <span class="hidden sm:inline text-[#464A52]">|</span>
+                    <span><strong class="text-white font-semibold">T</strong> 031) 812-7636</span>
+                    <span class="hidden sm:inline text-[#464A52]">|</span>
+                    <span><strong class="text-white font-semibold">E-Mail</strong> hanbridgeglobal@nate.com</span>
+                    <span class="hidden sm:inline text-[#464A52]">|</span>
+                    <span>&copy; <span id="currentYear"></span> 한브릿지 글로벌</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <aside aria-label="빠른 상담 메뉴" class="hidden md:flex fixed right-5 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-3 bg-white/90 backdrop-blur-md p-2.5 rounded-full border border-slate-200/80 shadow-xl">
+        <a href="https://line.me/ti/p/d8eyGtT5a_" target="_blank" rel="noopener noreferrer" title="LINE 상담"
+           class="quick-btn group relative w-12 h-12 rounded-full bg-[#06C755] text-white flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+            <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity absolute right-15 bg-navy text-white text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap shadow-md">
+                LINE 상담
+            </span>
+        </a>
+
+        <a href="https://www.instagram.com/hanbridgeglobal?knvt=YWN5MGVnaXMwODd2&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"
+           class="quick-btn group relative w-12 h-12 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity absolute right-15 bg-navy text-white text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap shadow-md">
+                Instagram
+            </span>
+        </a>
+
+        <button type="button" onclick="openWechatModal()" title="WeChat QR"
+                class="quick-btn group relative w-12 h-12 rounded-full bg-[#07C160] text-white flex items-center justify-center cursor-pointer">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+            </svg>
+            <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity absolute right-15 bg-navy text-white text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap shadow-md">
+                WeChat QR
+            </span>
+        </button>
+
+        <div class="w-6 h-px bg-slate-200 my-0.5"></div>
+
+        <a href="#contact" title="이메일 문의"
+           class="quick-btn group relative w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity absolute right-15 bg-navy text-white text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap shadow-md">
+                이메일 문의
+            </span>
+        </a>
+
+        <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="맨 위로"
+                class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer">
+            TOP
+        </button>
+    </aside>
+
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-2 grid grid-cols-4 gap-2 shadow-lg">
+        <a href="https://line.me/ti/p/d8eyGtT5a_" target="_blank" rel="noopener noreferrer"
+           class="flex flex-col items-center justify-center py-1.5 rounded-xl bg-[#06C755]/10 text-[#06C755]">
+            <span class="text-xs font-bold">LINE</span>
+            <span class="text-[10px] text-slate-500">라인상담</span>
+        </a>
+        <a href="https://www.instagram.com/hanbridgeglobal?knvt=YWN5MGVnaXMwODd2&utm_source=qr" target="_blank" rel="noopener noreferrer"
+           class="flex flex-col items-center justify-center py-1.5 rounded-xl bg-pink-500/10 text-pink-600">
+            <span class="text-xs font-bold">Instagram</span>
+            <span class="text-[10px] text-slate-500">인스타</span>
+        </a>
+        <button type="button" onclick="openWechatModal()"
+                class="flex flex-col items-center justify-center py-1.5 rounded-xl bg-[#07C160]/10 text-[#07C160]">
+            <span class="text-xs font-bold">WeChat</span>
+            <span class="text-[10px] text-slate-500">위챗 QR</span>
+        </button>
+        <a href="#contact"
+           class="flex flex-col items-center justify-center py-1.5 rounded-xl bg-navy text-white">
+            <span class="text-xs font-bold">E-mail</span>
+            <span class="text-[10px] text-blue-200">이메일문의</span>
+        </a>
+    </div>
+
+    <div id="wechatModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy-deep/60 backdrop-blur-xs p-4" onclick="if(event.target === this) closeWechatModal()">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative transform transition-all">
+            <button type="button" onclick="closeWechatModal()" aria-label="닫기"
+                    class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="text-center">
+                <span class="inline-block px-3 py-1 rounded-full bg-[#07C160]/10 text-[#07C160] text-xs font-bold mb-2">
+                    WeChat Official QR
+                </span>
+                <h3 class="text-xl font-bold text-navy">HAN BRIDGE GLOBAL</h3>
+                <p class="text-xs text-slate-500 mt-1" data-i18n="wechat_modal_sub">위챗 앱으로 아래 QR 코드를 스캔하여 친구 추가해 주세요.</p>
+            </div>
+
+            <div class="mt-5 rounded-2xl overflow-hidden border border-slate-200 bg-white p-3 shadow-inner flex flex-col items-center justify-center">
+                <img id="wechatQrImg" src="위챗.jpg" alt="HanBridgeGlobal WeChat QR Code" class="w-full h-auto max-h-[320px] object-contain rounded-xl"
+                     onerror="handleWechatImgError(this)">
+                <canvas id="wechatFallbackCanvas" width="240" height="240" class="hidden rounded-xl"></canvas>
+            </div>
+
+            <div class="mt-5 flex gap-2.5">
+                <button type="button" onclick="copyWechatId()"
+                        class="flex-1 py-3 rounded-xl bg-[#07C160]/10 hover:bg-[#07C160]/20 text-[#07C160] text-sm font-semibold transition-colors cursor-pointer" data-i18n="btn_copy_id">
+                    ID 복사
+                </button>
+                <button type="button" onclick="closeWechatModal()"
+                        class="flex-1 py-3 rounded-xl bg-navy hover:bg-navy-royal text-white text-sm font-semibold transition-colors cursor-pointer" data-i18n="btn_close">
+                    닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastMessage" class="fixed bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-3 bg-navy text-white px-6 py-3.5 rounded-full shadow-2xl border border-white/10 text-sm font-medium">
+        <svg class="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span id="toastText">문의 내용이 준비되었습니다.</span>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        const wechatModal = document.getElementById('wechatModal');
+        function openWechatModal() {
+            wechatModal.classList.remove('hidden');
+            wechatModal.classList.add('flex');
+        }
+        function closeWechatModal() {
+            wechatModal.classList.add('hidden');
+            wechatModal.classList.remove('flex');
+        }
+
+        function handleWechatImgError(imgEl) {
+            imgEl.style.display = 'none';
+            const canvas = document.getElementById('wechatFallbackCanvas');
+            canvas.classList.remove('hidden');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, 240, 240);
+
+            const drawFinder = (x, y) => {
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(x, y, 42, 42);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(x + 6, y + 6, 30, 30);
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(x + 12, y + 12, 18, 18);
+            };
+            drawFinder(16, 16);
+            drawFinder(182, 16);
+            drawFinder(16, 182);
+
+            const pattern = [
+                [1,0,1,1,0,1,0,1,1,0,1,0,1,1],
+                [0,1,1,0,1,1,1,0,0,1,0,1,1,0],
+                [1,1,0,1,0,0,1,1,1,0,1,1,0,1],
+                [0,0,1,1,1,0,1,0,1,1,0,0,1,1],
+                [1,0,1,0,1,1,0,1,0,1,1,0,1,0],
+                [1,1,0,1,0,1,1,0,1,0,1,1,0,1],
+                [0,1,1,0,1,0,0,1,1,1,0,0,1,0],
+                [1,0,0,1,1,1,0,1,0,0,1,1,0,1],
+                [0,1,1,0,0,1,1,0,1,1,0,1,1,0],
+                [1,1,0,1,1,0,1,1,0,1,0,0,1,1],
+                [0,0,1,0,1,1,0,0,1,0,1,1,0,1],
+                [1,0,1,1,0,1,1,0,1,1,0,1,0,0],
+                [0,1,0,1,1,0,0,1,0,1,1,0,1,1],
+                [1,1,1,0,0,1,1,0,1,0,0,1,1,0]
+            ];
+            ctx.fillStyle = '#000000';
+            for (let r = 0; r < 14; r++) {
+                for (let c = 0; c < 14; c++) {
+                    const px = 66 + c * 8;
+                    const py = 66 + r * 8;
+                    if (r >= 4 && r <= 9 && c >= 4 && c <= 9) continue;
+                    if (pattern[r][c]) {
+                        ctx.fillRect(px, py, 6, 6);
+                    }
+                }
+            }
+            for (let c = 0; c < 14; c++) {
+                if (c % 2 === 0) {
+                    ctx.fillRect(66 + c * 8, 22, 6, 6);
+                    ctx.fillRect(66 + c * 8, 38, 6, 6);
+                    ctx.fillRect(66 + c * 8, 192, 6, 6);
+                    ctx.fillRect(66 + c * 8, 208, 6, 6);
+                }
+            }
+            for (let r = 0; r < 14; r++) {
+                if (r % 2 === 1) {
+                    ctx.fillRect(22, 66 + r * 8, 6, 6);
+                    ctx.fillRect(38, 66 + r * 8, 6, 6);
+                    ctx.fillRect(192, 66 + r * 8, 6, 6);
+                    ctx.fillRect(208, 66 + r * 8, 6, 6);
+                }
+            }
+
+            ctx.fillStyle = '#07C160';
+            ctx.beginPath();
+            ctx.roundRect(98, 98, 44, 44, 10);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.beginPath();
+            ctx.arc(114, 117, 8, 0, Math.PI * 2);
+            ctx.arc(127, 123, 6.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function copyWechatId() {
+            const wechatId = 'HanBridgeGlobal';
+            try {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = wechatId;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+            } catch (e) {}
+            showToast(i18nData[currentLang].toast_wechat_copied);
+        }
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.12 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        const i18nData = {
+            ko: {
+                nav_about: "회사소개",
+                nav_programs: "주요 사업 분야",
+                nav_channels: "글로벌 상담",
+                nav_contact: "이메일 문의",
+                nav_location: "오시는 길",
+                hero_slogan: "대한민국과 세계를 연결하는 글로벌 비즈니스 파트너",
+                hero_line: "LINE 바로 상담",
+                hero_wechat: "WeChat QR",
+                hero_cta: "이메일 문의",
+                about_badge: "COMPANY INTRODUCTION · 회사소개",
+                about_heading: "대한민국과 세계를 연결하는 글로벌 비즈니스 파트너",
+                val_1: "고객 중심의 서비스",
+                val_2: "신뢰 기반 파트너십",
+                val_3: "지속적인 혁신",
+                about_p1: "한브릿지 글로벌(Han Bridge Global)은 대한민국과 세계를 연결하며 새로운 기회와 가치를 창출하는 글로벌 비즈니스 전문 기업입니다.",
+                about_p2: "외국인 환자 유치, 종합여행 서비스 및 글로벌 무역을 핵심 사업으로 운영하며, 고객의 다양한 요구에 부합하는 전문적이고 차별화된 서비스를 제공하고자 합니다.",
+                about_p3: "대한민국의 우수한 의료 기술과 의료 서비스를 세계에 알리고, 해외 고객들이 편리하고 안전하게 의료 서비스를 이용할 수 있도록 의료기관 연계, 상담, 통역 및 체류 지원 등 맞춤형 서비스를 제공합니다.",
+                about_p4: "또한 의료관광을 비롯한 맞춤형 여행 서비스와 국내외 우수한 상품의 수출입 및 유통을 통해 글로벌 비즈니스의 새로운 가능성을 만들어 나가고 있습니다.",
+                about_p5: "한브릿지 글로벌은 고객 중심의 서비스, 신뢰를 바탕으로 한 파트너십, 지속적인 혁신을 핵심 가치로 삼고 있습니다.",
+                about_p6: "국가와 언어, 문화의 경계를 넘어 사람과 사람, 기업과 기업, 대한민국과 세계를 잇는 든든한 가교가 되겠습니다.",
+                about_closing: "당신의 새로운 가능성, 한브릿지 글로벌이 함께합니다.",
+                program_title: "주요 사업 분야 (Our Business)",
+                program_sub: "외국인 환자 유치, 종합여행, 글로벌 무역을 통해 대한민국과 세계를 잇는 전문 비즈니스 솔루션을 제공합니다.",
+                card1_title: "외국인 환자 유치",
+                card1_desc: "국내 의료기관 연계, 진료 예약, 의료 통역, 입국 및 체류 지원 등 외국인 환자를 위한 맞춤형 의료관광 서비스.",
+                card2_title: "종합여행",
+                card2_desc: "국내외 여행, 맞춤형 관광, 의료관광, 비즈니스 방문 등 고객의 목적에 맞는 차별화된 여행 서비스.",
+                card3_title: "글로벌 무역",
+                card3_desc: "국내외 우수 상품의 발굴, 수출입, 유통 및 해외시장 개척을 통한 글로벌 비즈니스 파트너십 구축.",
+                contact_title: "실시간 글로벌 상담 채널",
+                contact_sub: "편하신 메신저 아이콘을 클릭하시면 한브릿지 글로벌 공식 계정으로 바로 연결됩니다.",
+                line_desc: "라인 공식 상담 연결",
+                insta_desc: "@hanbridgeglobal 공식 인스타그램",
+                wechat_desc: "위챗 QR 코드 스캔 추가",
+                connect_now: "바로가기",
+                view_qr: "QR 코드 보기",
+                form_heading: "이메일 상담 문의",
+                label_name: "성함 *",
+                ph_name: "성함을 입력해 주세요",
+                label_email: "이메일 주소 *",
+                ph_email: "example@email.com",
+                label_contact: "연락처 또는 메신저 ID",
+                ph_contact: "LINE / WeChat ID 또는 전화번호",
+                label_pref_lang: "답변 희망 언어",
+                label_category: "희망 상담 분야",
+                opt_cat1: "외국인 환자 유치 (Medical Tourism)",
+                opt_cat2: "종합여행 서비스 (Global Travel)",
+                opt_cat3: "글로벌 무역 및 수출입 (Global Trade)",
+                opt_cat4: "기타 비즈니스 제휴 및 일반 문의",
+                label_message: "문의 내용 *",
+                ph_message: "문의하실 내용을 자유롭게 작성해 주세요.",
+                form_note: "* 한국어, 영어, 일본어, 중국어 모두 문의 및 답변이 가능합니다.",
+                btn_submit: "이메일 문의 보내기",
+                err_required: "필수 입력 항목입니다. 반드시 입력해 주세요.",
+                err_email_format: "올바른 이메일 주소 형식을 반드시 입력해 주세요.",
+                map_open: "지도에서 열기",
+                banner_contact_title: "연락처 및 문의",
+                wechat_modal_sub: "위챗 앱으로 아래 QR 코드를 스캔하여 친구 추가해 주세요.",
+                btn_copy_id: "ID 복사",
+                btn_close: "닫기",
+                toast_sent: "이메일 클라이언트 연결 및 문의 내용이 복사되었습니다!",
+                toast_wechat_copied: "위챗 ID (HanBridgeGlobal)가 복사되었습니다!"
+            },
+            en: {
+                nav_about: "About Us",
+                nav_programs: "Our Business",
+                nav_channels: "Global Consultation",
+                nav_contact: "Email Inquiry",
+                nav_location: "Location",
+                hero_slogan: "Global Business Partner Connecting Korea to the World",
+                hero_line: "Direct LINE Chat",
+                hero_wechat: "WeChat QR",
+                hero_cta: "Email Inquiry",
+                about_badge: "COMPANY INTRODUCTION",
+                about_heading: "Global Business Partner Connecting Korea to the World",
+                val_1: "Customer-Centric Service",
+                val_2: "Trust-Based Partnership",
+                val_3: "Continuous Innovation",
+                about_p1: "Han Bridge Global is a specialized global business enterprise that connects South Korea with the world, creating new opportunities and lasting value.",
+                about_p2: "Operating Medical Tourism, Global Travel Services, and Global Trade as our core businesses, we strive to deliver professional and differentiated solutions tailored to diverse client needs.",
+                about_p3: "We introduce Korea's advanced medical technologies and healthcare services to the world, providing customized support—including hospital matching, consultation, medical interpretation, and stay assistance—so international patients can access care safely and conveniently.",
+                about_p4: "Furthermore, through tailored travel programs alongside the import, export, and distribution of outstanding domestic and international products, we are opening new horizons in global business.",
+                about_p5: "Han Bridge Global upholds customer-centric service, trust-based partnerships, and continuous innovation as our core values.",
+                about_p6: "Beyond borders of nation, language, and culture, we serve as a reliable bridge connecting people to people, businesses to businesses, and Korea to the world.",
+                about_closing: "Your new possibilities—Han Bridge Global is with you.",
+                program_title: "Our Business",
+                program_sub: "Delivering specialized global business solutions across Medical Tourism, Global Travel, and Global Trade.",
+                card1_title: "Medical Tourism",
+                card1_desc: "Customized medical tourism services for international patients, including Korean hospital matching, appointment booking, medical interpretation, and entry/stay support.",
+                card2_title: "Global Travel",
+                card2_desc: "Differentiated domestic and international travel services tailored to client objectives, including bespoke tours, medical tourism, and business visits.",
+                card3_title: "Global Trade",
+                card3_desc: "Building global business partnerships through sourcing, import/export, distribution of premier products, and overseas market development.",
+                contact_title: "Direct Global Consultation",
+                contact_sub: "Click your preferred messenger icon below to connect directly with HanBridgeGlobal.",
+                line_desc: "Connect via Official LINE",
+                insta_desc: "@hanbridgeglobal Official Instagram",
+                wechat_desc: "Scan WeChat QR Code",
+                connect_now: "Connect",
+                view_qr: "View QR Code",
+                form_heading: "Email Inquiry",
+                label_name: "Full Name *",
+                ph_name: "Enter your name",
+                label_email: "Email Address *",
+                ph_email: "example@email.com",
+                label_contact: "Phone or Messenger ID",
+                ph_contact: "LINE / WeChat ID or Phone Number",
+                label_pref_lang: "Preferred Language",
+                label_category: "Business / Inquiry Category",
+                opt_cat1: "Medical Tourism (International Patient Services)",
+                opt_cat2: "Global Travel Services",
+                opt_cat3: "Global Trade (Import / Export / Distribution)",
+                opt_cat4: "Partnership & General Inquiry",
+                label_message: "Inquiry Details *",
+                ph_message: "Please write your inquiry in English, Korean, Japanese, or Chinese.",
+                form_note: "* Inquiries and responses are available in Korean, English, Japanese, and Chinese.",
+                btn_submit: "Send Email Inquiry",
+                err_required: "This field is required. Please be sure to enter it.",
+                err_email_format: "Please enter a valid email address.",
+                map_open: "Open in Google Maps",
+                banner_contact_title: "Contact & Inquiry",
+                wechat_modal_sub: "Scan the QR code below using WeChat to add us as a friend.",
+                btn_copy_id: "Copy ID",
+                btn_close: "Close",
+                toast_sent: "Your inquiry has been prepared and copied to clipboard!",
+                toast_wechat_copied: "WeChat ID (HanBridgeGlobal) copied to clipboard!"
+            },
+            ja: {
+                nav_about: "会社紹介",
+                nav_programs: "主要事業分野",
+                nav_channels: "グローバル相談",
+                nav_contact: "メールお問い合わせ",
+                nav_location: "アクセス",
+                hero_slogan: "韓国と世界を繋ぐグローバルビジネスパートナー",
+                hero_line: "LINEで直接相談",
+                hero_wechat: "WeChat QR",
+                hero_cta: "メールお問い合わせ",
+                about_badge: "COMPANY INTRODUCTION · 会社紹介",
+                about_heading: "韓国と世界を繋ぐグローバルビジネスパートナー",
+                val_1: "顧客中心のサービス",
+                val_2: "信頼に基づくパートナーシップ",
+                val_3: "持続的なイノベーション",
+                about_p1: "ハンブリッジグローバル（Han Bridge Global）は、大韓民国と世界を繋ぎ、新たな機会と価値を創出するグローバルビジネス専門企業です。",
+                about_p2: "外国人患者誘致、総合旅行サービス、およびグローバル貿易を中核事業として展開し、お客様の多様なニーズに応える専門的かつ差別化されたサービスを提供いたします。",
+                about_p3: "韓国の優れた医療技術と医療サービスを世界に発信し、海外のお客様が安心・快適に医療サービスをご利用いただけるよう、医療機関の連携、相談、医療通訳、滞在サポートなどのオーダーメイドサービスを提供しています。",
+                about_p4: "また、医療観光をはじめとするカスタム旅行サービスや、国内外の優れた商品の輸出入・流通を通じて、グローバルビジネスの新たな可能性を切り拓いています。",
+                about_p5: "ハンブリッジグローバルは、顧客中心のサービス、信頼に基づくパートナーシップ、持続的なイノベーションを核となる価値としています。",
+                about_p6: "国や言語、文化の境界を越え、人と人、企業と企業、そして韓国と世界を結ぶ確かな架け橋となります。",
+                about_closing: "あなたの新たな可能性、ハンブリッジグローバルが共に歩みます。",
+                program_title: "主要事業分野 (Our Business)",
+                program_sub: "外国人患者誘致・総合旅行・グローバル貿易を通じて、韓国と世界を結ぶ専門ソリューションを提供します。",
+                card1_title: "外国人患者誘致",
+                card1_desc: "韓国国内の医療機関連携、診療予約、医療通訳、入国および滞在サポートなど、外国人患者様のためのオーダーメイド医療観光サービス。",
+                card2_title: "総合旅行",
+                card2_desc: "国内外旅行、カスタム観光、医療観光、ビジネス訪問など、お客様の目的に合わせた差別化された旅行サービス。",
+                card3_title: "グローバル貿易",
+                card3_desc: "国内外の優良商品の発掘、輸出入、流通および海外市場開拓を通じたグローバルビジネスパートナーシップの構築。",
+                contact_title: "リアルタイム相談窓口",
+                contact_sub: "ご希望のメッセンジャーアイコンをクリックすると、公式アカウントへ直接繋がります。",
+                line_desc: "LINE公式アカウントで相談",
+                insta_desc: "@hanbridgeglobal 公式Instagram",
+                wechat_desc: "WeChat QRコードをスキャン",
+                connect_now: "リンクを開く",
+                view_qr: "QRコードを表示",
+                form_heading: "メールでのお問い合わせ",
+                label_name: "お名前 *",
+                ph_name: "お名前をご入力ください",
+                label_email: "メールアドレス *",
+                ph_email: "example@email.com",
+                label_contact: "電話番号またはメッセンジャーID",
+                ph_contact: "LINE / WeChat ID またはお電話番号",
+                label_pref_lang: "ご希望の対応言語",
+                label_category: "ご希望の相談分野",
+                opt_cat1: "外国人患者誘致 (Medical Tourism)",
+                opt_cat2: "総合旅行サービス (Global Travel)",
+                opt_cat3: "グローバル貿易・輸出入 (Global Trade)",
+                opt_cat4: "その他・提携に関するお問い合わせ",
+                label_message: "お問い合わせ内容 *",
+                ph_message: "日本語・韓国語・英語・中国語でお気軽にお問い合わせください。",
+                form_note: "※ 韓国語・英語・日本語・中国語でのご相談・ご返信に対応しております。",
+                btn_submit: "メールを送信する",
+                err_required: "必須入力項目です。必ずご入力ください。",
+                err_email_format: "正しいメールアドレス形式を必ずご入力ください。",
+                map_open: "Googleマップで開く",
+                banner_contact_title: "連絡先およびお問い合わせ",
+                wechat_modal_sub: "WeChatアプリで下のQRコードをスキャンして友だち追加してください。",
+                btn_copy_id: "IDコピー",
+                btn_close: "閉じる",
+                toast_sent: "お問い合わせ内容が作成され、クリップボードにコピーされました！",
+                toast_wechat_copied: "WeChat ID (HanBridgeGlobal) がコピーされました！"
+            },
+            zh: {
+                nav_about: "公司简介",
+                nav_programs: "核心业务领域",
+                nav_channels: "全球咨询",
+                nav_contact: "邮件咨询",
+                nav_location: "公司地址",
+                hero_slogan: "连接韩国与世界的全球化商业伙伴",
+                hero_line: "LINE 直接咨询",
+                hero_wechat: "微信二维码",
+                hero_cta: "邮件咨询",
+                about_badge: "COMPANY INTRODUCTION · 公司简介",
+                about_heading: "连接韩国与世界的全球化商业伙伴",
+                val_1: "以客户为中心的服务",
+                val_2: "基于信任的合作伙伴关系",
+                val_3: "持续不断的创新",
+                about_p1: "韩桥环球（Han Bridge Global）是一家连接韩国与世界、创造全新机遇与价值的全球化专业商业企业。",
+                about_p2: "公司以招揽外国患者（国际医疗旅游）、综合旅游服务及全球贸易为核心业务，致力于提供契合客户多元化需求的专业化、差异化服务。",
+                about_p3: "我们将韩国先进的医疗技术与优质医疗服务推向世界，为海外客户提供医疗机构对接、专业咨询、医疗翻译及在韩停留支持等一站式定制服务，助力客户便捷、安全地享受韩国医疗服务。",
+                about_p4: "此外，通过涵盖医疗旅游在内的定制旅行服务，以及国内外优质商品的进出口与流通，我们正在不断开拓全球商业的新可能。",
+                about_p5: "韩桥环球始终秉持“以客户为中心的服务、基于信任的合作伙伴关系、持续不断的创新”三大核心价值观。",
+                about_p6: "跨越国家、语言与文化的界限，我们将成为连接人与人、企业与企业、韩国与世界的坚实桥梁。",
+                about_closing: "您的全新可能，韩桥环球与您同行。",
+                program_title: "核心业务领域 (Our Business)",
+                program_sub: "通过国际医疗旅游、综合旅游与全球贸易，打造连接韩国与世界的专业商业解决方案。",
+                card1_title: "国际医疗旅游",
+                card1_desc: "提供韩国医疗机构对接、诊疗预约、专业医疗翻译、入境及在韩停留支持等面向外国患者的定制化医疗旅游服务。",
+                card2_title: "综合旅游服务",
+                card2_desc: "提供国内外旅游、定制观光、医疗旅游、商务考察等契合客户出行目的的差异化旅行服务。",
+                card3_title: "全球贸易",
+                card3_desc: "通过发掘国内外优质商品、进出口、流通及海外市场开拓，构建稳固的全球商业合作伙伴关系。",
+                contact_title: "实时全球咨询渠道",
+                contact_sub: "点击下方您常用的社交软件图标，即可直接联系 HanBridgeGlobal 官方账号。",
+                line_desc: "连接 LINE 官方咨询",
+                insta_desc: "@hanbridgeglobal 官方 Instagram",
+                wechat_desc: "扫描微信二维码添加好友",
+                connect_now: "立即前往",
+                view_qr: "查看二维码",
+                form_heading: "发送邮件咨询",
+                label_name: "您的姓名 *",
+                ph_name: "请输入您的姓名",
+                label_email: "电子邮箱 *",
+                ph_email: "example@email.com",
+                label_contact: "联系电话或社交账号 ID",
+                ph_contact: "微信号 / LINE ID 或手机号码",
+                label_pref_lang: "希望回复的语言",
+                label_category: "希望咨询的领域",
+                opt_cat1: "国际医疗旅游 (Medical Tourism)",
+                opt_cat2: "综合旅游服务 (Global Travel)",
+                opt_cat3: "全球贸易与进出口 (Global Trade)",
+                opt_cat4: "其他商务合作与常规咨询",
+                label_message: "咨询内容 *",
+                ph_message: "请用中文、韩语、英语或日语自由填写您的咨询内容。",
+                form_note: "* 支持韩语、英语、日语、中文四种语言咨询及回复。",
+                btn_submit: "发送邮件咨询",
+                err_required: "此为必填项，请务必填写。",
+                err_email_format: "请务必输入正确的电子邮箱格式。",
+                map_open: "在地图中打开",
+                banner_contact_title: "联系方式及咨询",
+                wechat_modal_sub: "请打开微信扫一扫下方二维码添加好友。",
+                btn_copy_id: "复制微信号",
+                btn_close: "关闭",
+                toast_sent: "咨询内容已生成并复制到剪贴板！",
+                toast_wechat_copied: "微信号 (HanBridgeGlobal) 已复制！"
+            }
+        };
+
+        let currentLang = 'ko';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const dict = i18nData[lang];
+            if (!dict) return;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    if (dict[key].includes('\n')) {
+                        el.innerHTML = dict[key].replace(/\n/g, '<br>');
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (dict[key]) el.setAttribute('placeholder', dict[key]);
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang-btn') === lang) {
+                    btn.className = 'lang-btn px-2.5 py-1 rounded-full text-xs font-semibold transition-all bg-navy text-white shadow-xs';
+                } else {
+                    btn.className = 'lang-btn px-2.5 py-1 rounded-full text-xs font-medium text-slate-600 hover:text-navy transition-all';
+                }
+            });
+
+            document.querySelectorAll('.form-lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-form-lang') === lang) {
+                    btn.className = 'form-lang-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white text-navy transition-all';
+                } else {
+                    btn.className = 'form-lang-btn px-3 py-1.5 rounded-xl text-xs font-medium text-white/80 hover:text-white transition-all';
+                }
+            });
+
+            const prefSelect = document.getElementById('preferredLang');
+            const langMap = {
+                ko: '한국어 (Korean)',
+                en: 'English',
+                ja: '日本語 (Japanese)',
+                zh: '中文 (Chinese)'
+            };
+            if (prefSelect && langMap[lang]) {
+                prefSelect.value = langMap[lang];
+            }
+        }
+
+        function setFieldError(inputId, errorId, messageKey) {
+            const inputEl = document.getElementById(inputId);
+            const errorEl = document.getElementById(errorId);
+            if (!inputEl || !errorEl) return;
+            inputEl.classList.remove('border-slate-200', 'focus:border-navy');
+            inputEl.classList.add('border-red-500', 'focus:border-red-500', 'bg-red-50/30');
+            errorEl.textContent = i18nData[currentLang][messageKey];
+            errorEl.classList.remove('hidden');
+        }
+
+        function clearFieldError(inputId, errorId) {
+            const inputEl = document.getElementById(inputId);
+            const errorEl = document.getElementById(errorId);
+            if (!inputEl || !errorEl) return;
+            inputEl.classList.remove('border-red-500', 'focus:border-red-500', 'bg-red-50/30');
+            inputEl.classList.add('border-slate-200', 'focus:border-navy');
+            errorEl.classList.add('hidden');
+        }
+
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+
+            const nameEl = document.getElementById('senderName');
+            const emailEl = document.getElementById('senderEmail');
+            const messageEl = document.getElementById('inquiryMessage');
+
+            const name = nameEl.value.trim();
+            const email = emailEl.value.trim();
+            const contact = document.getElementById('senderContact').value.trim();
+            const prefLang = document.getElementById('preferredLang').value;
+            const categorySelect = document.getElementById('inquiryCategory');
+            const categoryText = categorySelect.options[categorySelect.selectedIndex].text;
+            const message = messageEl.value.trim();
+
+            let firstInvalidEl = null;
+
+            if (!name) {
+                setFieldError('senderName', 'err_senderName', 'err_required');
+                if (!firstInvalidEl) firstInvalidEl = nameEl;
+            } else {
+                clearFieldError('senderName', 'err_senderName');
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                setFieldError('senderEmail', 'err_senderEmail', 'err_required');
+                if (!firstInvalidEl) firstInvalidEl = emailEl;
+            } else if (!emailPattern.test(email)) {
+                setFieldError('senderEmail', 'err_senderEmail', 'err_email_format');
+                if (!firstInvalidEl) firstInvalidEl = emailEl;
+            } else {
+                clearFieldError('senderEmail', 'err_senderEmail');
+            }
+
+            if (!message) {
+                setFieldError('inquiryMessage', 'err_inquiryMessage', 'err_required');
+                if (!firstInvalidEl) firstInvalidEl = messageEl;
+            } else {
+                clearFieldError('inquiryMessage', 'err_inquiryMessage');
+            }
+
+            if (firstInvalidEl) {
+                firstInvalidEl.focus();
+                return;
+            }
+
+            const subject = encodeURIComponent(`[HanBridgeGlobal Inquiry] ${name} - ${categoryText}`);
+            const bodyText = `Name: ${name}\nEmail: ${email}\nContact / Messenger ID: ${contact || '-'}\nPreferred Language: ${prefLang}\nCategory: ${categoryText}\n\nMessage:\n${message}`;
+            const body = encodeURIComponent(bodyText);
+
+            try {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = bodyText;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+            } catch (e) {}
+
+            showToast(i18nData[currentLang].toast_sent);
+
+            window.location.href = `mailto:hanbridgeglobal@nate.com?subject=${subject}&body=${body}`;
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastMessage');
+            const toastText = document.getElementById('toastText');
+            toastText.textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
